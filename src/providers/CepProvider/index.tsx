@@ -35,7 +35,7 @@ interface ILocation_info {
 interface LocationData {
   ceps: ILocation;
   cepNumber: string;
-  setCepNumber: Dispatch<SetStateAction<string>>;
+  setCepNumber: (props: string) => void;
   setCeps: Dispatch<SetStateAction<ILocation>>;
   handleSearch: (local: string) => void;
 }
@@ -64,7 +64,13 @@ export const LocateCepProvider = ({ children }: ILocationProps) => {
 
   return (
     <LocateCepContext.Provider
-      value={{ ceps, setCepNumber, cepNumber, handleSearch, setCeps }}
+      value={{
+        ceps,
+        setCepNumber,
+        cepNumber,
+        handleSearch,
+        setCeps,
+      }}
     >
       {children}
     </LocateCepContext.Provider>
