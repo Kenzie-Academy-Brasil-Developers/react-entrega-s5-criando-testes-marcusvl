@@ -2,7 +2,7 @@ describe("Cep search", () => {
   it("should be able to search cep", () => {
     cy.visit("http://localhost:3000");
     cy.get("input").type(24230002);
-    cy.contains("Buscar pelo CEP").click({ force: true });
+    cy.contains("Buscar pelo CEP").click();
   });
 
   it("Show cep", () => {
@@ -25,8 +25,10 @@ describe("Cep search", () => {
         },
         estado: "RJ",
       },
-    }).as("new-cep");
+    });
 
-    cy.contains("Número");
+    cy.get("input")
+      .eq(1)
+      .should("have.value", "Avenida Jornalista Alberto Francisco Torres");
   });
 });
